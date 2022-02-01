@@ -6,27 +6,38 @@
 const hre = require("hardhat");
 
 async function main() {
-  // Hardhat always runs the compile task when running scripts with its command
-  // line interface.
-  //
-  // If this script is run directly using `node` you may want to call compile
-  // manually to make sure everything is compiled
-  // await hre.run('compile');
+  const Contract = await ethers.getContractFactory("Pokemon");
+  const contract = await Contract.deploy();
+  const [owner] = await ethers.getSigners();
 
-  // We get the contract to deploy
-  const Greeter = await hre.ethers.getContractFactory("Greeter");
-  const greeter = await Greeter.deploy("Hello, Hardhat!");
+  const max = 898;
+  const randomId = Math.floor(Math.random() * max) + 1;
 
-  await greeter.deployed();
+  await contract.deployed();
 
-  console.log("Greeter deployed to:", greeter.address);
+  console.log(`Deployed at ${contract.address}`);
+
+  const mintTx = await contract.mint(randomId);
+
+  // wait until the transaction is mined
+  await mintTx.wait();
+  const balance = await contract.balanceOf(owner.address, randomId);
+  console.log({ balance });
+  console.log(
+    `Minted! Check at https://testnets.opensea.io/assets/${contract.address}/${randomId}`
+  );
+  console.log(
+    `Check https://ropsten.rarible.com/token/${contract.address}:${randomId}?tab=details`
+  );
+  // console.log(balance);
+  // console.log(await contract.uri(6));
 }
 
 // We recommend this pattern to be able to use async/await everywhere
 // and properly handle errors.
 main()
   .then(() => process.exit(0))
-  .catch((error) => {
+  .catch(error => {
     console.error(error);
     process.exit(1);
   });

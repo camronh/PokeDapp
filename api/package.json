@@ -10,6 +10,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "aws-serverless-express": "^3.4.0",
+    "cors": "^2.8.5",
     "express": "^4.17.2",
     "pokeapi-js-wrapper": "^1.2.2",
     "pokedex-promise-v2": "^4.0.0"
