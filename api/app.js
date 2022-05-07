@@ -26,7 +26,6 @@ app.get("/metadata/:pokemonId.json", async function (req, res) {
   }
 });
 
-
 // Create a config
 app.get("/metadata/:pokemonId", async function (req, res) {
   try {
@@ -39,11 +38,11 @@ app.get("/metadata/:pokemonId", async function (req, res) {
   }
 });
 
-
 // Create a config
 app.get("/randomPokemon", async function (req, res) {
   try {
     const pokemonId = Math.floor(Math.random() * 898) + 1;
+    console.log({ pokemonId });
     const metadata = await pokeapi.getMetadata(pokemonId);
     res.send(metadata);
   } catch (error) {

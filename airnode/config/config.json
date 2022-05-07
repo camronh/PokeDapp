@@ -1,0 +1,149 @@
+{
+  "chains": [
+    {
+      "authorizers": [],
+      "contracts": {
+        "AirnodeRrp": "0xC11593B87f258672b8eB02d9A723a429b15E9E03"
+      },
+      "id": "4",
+      "providers": {
+        "Rinkeby": {
+          "url": "${Rinkeby_RPC}"
+        }
+      },
+      "type": "evm"
+    },
+    {
+      "authorizers": [],
+      "contracts": {
+        "AirnodeRrp": "0x3B35250Ca54C1Fb8c83D48F21231ef6e4fb9f79D"
+      },
+      "id": "3",
+      "providers": {
+        "Ropsten": {
+          "url": "${Ropsten_RPC}"
+        }
+      },
+      "type": "evm"
+    }
+  ],
+  "nodeSettings": {
+    "cloudProvider": {
+      "type": "local"
+    },
+    "airnodeWalletMnemonic": "${MNEMONIC}",
+    "logFormat": "plain",
+    "logLevel": "INFO",
+    "nodeVersion": "0.3.1",
+    "stage": "dev",
+    "heartbeat": {
+      "enabled": false
+    },
+    "httpGateway": {
+      "enabled": true,
+      "apiKey": "${HTTP_GATEWAY_API_KEY}"
+    }
+  },
+  "triggers": {
+    "rrp": [
+      {
+        "endpointId": "0x357f18065c88c7cf4f5634db3000e8349b77b4e247c39f30a835fab96a33db17",
+        "endpointName": "GET /metadata/{pokemonId}",
+        "oisTitle": "PokeDapp API"
+      },
+      {
+        "endpointId": "0x8bdb645ddcc6e95cc3e81aa5833c7e28042f4fa4eeb49b1de56d5fabd50e1657",
+        "endpointName": "GET /randomPokemon",
+        "oisTitle": "PokeDapp API"
+      }
+    ]
+  },
+  "ois": [
+    {
+      "oisFormat": "1.0.0",
+      "title": "PokeDapp API",
+      "version": "v1",
+      "apiSpecifications": {
+        "servers": [
+          {
+            "url": "https://c48103b6k8.execute-api.us-east-1.amazonaws.com/latest"
+          }
+        ],
+        "security": {},
+        "components": {
+          "securitySchemes": {}
+        },
+        "paths": {
+          "/metadata/{pokemonId}": {
+            "get": {
+              "parameters": [
+                {
+                  "name": "pokemonId",
+                  "in": "path"
+                }
+              ]
+            }
+          },
+          "/randomPokemon": {
+            "get": {
+              "parameters": []
+            }
+          }
+        }
+      },
+      "endpoints": [
+        {
+          "name": "GET /metadata/{pokemonId}",
+          "operation": {
+            "method": "get",
+            "path": "/metadata/{pokemonId}"
+          },
+          "reservedParameters": [
+            {
+              "name": "_type"
+            },
+            {
+              "name": "_path"
+            },
+            {
+              "name": "_times"
+            }
+          ],
+          "fixedOperationParameters": [],
+          "parameters": [
+            {
+              "name": "pokemonId",
+              "operationParameter": {
+                "name": "pokemonId",
+                "in": "path"
+              }
+            }
+          ],
+          "testable": true
+        },
+        {
+          "name": "GET /randomPokemon",
+          "operation": {
+            "method": "get",
+            "path": "/randomPokemon"
+          },
+          "reservedParameters": [
+            {
+              "name": "_type"
+            },
+            {
+              "name": "_path"
+            },
+            {
+              "name": "_times"
+            }
+          ],
+          "fixedOperationParameters": [],
+          "parameters": [],
+          "testable": true
+        }
+      ]
+    }
+  ],
+  "apiCredentials": []
+}

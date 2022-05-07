@@ -4,13 +4,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "npx hardhat compile",
+    "test": "npx hardhat test"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@api3/airnode-admin": "^0.3.1",
+    "@api3/airnode-protocol": "^0.3.1",
     "@openzeppelin/contracts": "^4.4.2",
+    "dotenv": "^16.0.0",
     "hardhat": "^2.8.3"
   },
   "devDependencies": {
